@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="" th:href="@{/css/bmistyle.css}" />
+<script type="text/javascript" th:src="@{/js/bmiscript.js}"></script>
+
+<title>BMI CALCULATOR</title>
+</head>
+<body>
+	<section>
+	
+ 
+<body>
+    <div  class="container-fluid">
+			<h1>BMI Calculator</h1>
+			<div class="display">
+				        <p id="result">20.0</p>
+				        <p id="category">Normal weight</p>
+			</div>
+        <div class="row">
+            <input type="range" min="20" max="200" value="20" id="weight" oninput="calculate()">
+            <span id="weight-val">20 kg</span>
+        </div>
+        <div class="row">
+            <input type="range" min="100" max="250" value="100" id="height" oninput="calculate()">
+            <span id="height-val">100 cm</span>
+        </div>
+
+
+    </div>
+
+
+
+
+	</section>
+</body>
+</html>
