@@ -18,7 +18,16 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
 		integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+
 	<link rel="stylesheet" href="" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" href="" th:href="@{/css/sidebar.css}" />
+	<link rel="stylesheet" href="" th:href="@{/css/FAQ.css}" />
+
+	
+
+
 	<link rel="stylesheet" href="" th:href="@{/css/bmistyle.css}" />
 
 
@@ -29,7 +38,9 @@
 	<!-- navbar starts -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#" th:href="@{/}">AI Dietician</a>
+			<i style="cursor: pointer;" class="fas fa-bars " onclick="toggleSidebar()"></i>
+
+			<a class="navbar-brand centre" href="#" th:href="@{/}">AI Dietician</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
 				aria-label="Toggle navigation">
@@ -43,8 +54,7 @@
 					<li class="nav-item"><a class="nav-link active" aria-current="page" href="#"
 							th:href="@{/user/index}">Home</a></li>
 
-					<!-- <li class="nav-item"><a class="nav-link" th:href="@{/about}"
-						href="#">About</a></li> -->
+					
 
 					<li class="nav-item"><a class="nav-link" href="#"><span th:text="${user.name}"></span></a></li>
 
@@ -59,22 +69,82 @@
 	<!-- navbar ends -->
 
 	<!-- sidebar -->
-	<div class="sidebar mt-2">
-		<span class="crossBtn" onclick="toggleSidebar()">&times;</span>
-		<a href="#" th:href="@{/user/index}" class="item"> <i class="fas fa-home"></i> Home</a>
-		<a href="#" class="item"> <i class="fas fa-user-circle"></i> Your Profile</a>
-		<a href="#" th:href="@{/user/bmi}" class="item"> <i class="fas fa-id-card-alt"></i> Calculate BMI</a>
-		<a href="#" th:href="@{/user/}" class="item"> <i class="fas fa-pencil-alt"></i> Add Details</a>
-		<a href="#" th:href="@{/user/}" class="item"> <i class="fas fa-id-card-alt"></i> Show diet</a>
-		<a href="#" class="item"> <i class="fas fa-cogs"></i> Setting</a>
-		<a href="#" th:href="@{/logout}" class="item"> <i class="fas fa-sign-out-alt"></i> Logout</a>
-		<div class="divider"></div>
+	<div class="sidebar ">
+		<div class="menu-bar">
+			<!-- <span class="crossBtn" onclick="toggleSidebar()">&times;</span> -->
+
+			<div class="menu">
+				<ul class="menu-links">
+					<li class="nav-link">
+						<a href="#" th:href="@{/user/index}">
+							<i class='bx bx-home-alt icon'></i>
+							<span class="text nav-text">Home</span>
+						</a>
+					</li>
+
+					<li class="nav-link">
+						<a href="#" th:href="@{/user/index}">
+							<i class='bx bxs-user-account icon'></i>
+							<span class="text nav-text">Your Profile</span>
+						</a>
+					</li>
+
+					<li class="nav-link">
+						<a href="#" th:href="@{/user/bmi}">
+							<i class='fa fa-spinner icon'></i>
+							<span class="text nav-text">Calculate BMI</span>
+						</a>
+					</li>
+
+					<li class="nav-link">
+						<a href="#" th:href="@{/user/addDetails}">
+							<i class='bx bx-pie-chart-alt icon'></i>
+							<span class="text nav-text">Add Details</span>
+						</a>
+					</li>
+
+					<li class="nav-link">
+						<a href="#" th:href="@{/user/}">
+
+							<i class='bx bx-dish icon'></i>
+
+							<span class="text nav-text">Show Diet</span>
+						</a>
+					</li>
+
+					<li class="nav-link">
+						<a href="#" th:href="@{/user/faq}">
+							<i class="far fa-question-circle icon"></i>
+							<span class="text nav-text">FAQ</span>
+						</a>
+					</li>
+
+					<li class="nav-link">
+						<a href="#" th:href="@{/user/}">
+							<i class='far fa-sun icon'></i>
+							<span class="text nav-text">Settings</span>
+						</a>
+					</li>
+
+					<li class="nav-link">
+						<a href="#" th:href="@{/logout}">
+						<i class='bx bx-log-out icon'></i>
+						<span class="text nav-text">Logout</span>
+						</a>
+					</li>
+
+				</ul>
+
+			</div>
+		</div>
+
 	</div>
 	<!-- End of sidebar -->
 
+
 	<!-- content -->
 	<div class="content mt-5">
-		<i style="cursor: pointer;" class="fas fa-bars m-3" onclick="toggleSidebar()"></i>
+		<!-- <i style="cursor: pointer;" class="fas fa-bars m-3" onclick="toggleSidebar()"></i> -->
 		<div th:replace="${content}"></div>
 	</div>
 	<!-- End of content -->
@@ -82,6 +152,8 @@
 
 	<script type="text/javascript" src="" th:src="@{/js/script.js}"></script>
 	<script type="text/javascript" src="" th:src="@{/js/bmiscript.js}"></script>
+	<script type="text/javascript" src="" th:src="@{/js/faq.js}"></script>
+
 
 	<!-- Option 1: Bootstrap Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"

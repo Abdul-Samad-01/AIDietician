@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard - AI Dietician</title>
+</head>
+
+<body>
+    <section>
+        <div class="card">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="heading">Frequenty Asked Questions</h1>
+                    <img th:src="@{/img/CISH26vH6PcCEAE=.webp}" class="img" alt="Responsive image" />
+                </div>
+                <div class="content-accordion">
+
+
+                    <div th:each="f: ${faq}" class="question-answer">
+                        <div class="question">
+                            <h3 class="title-question" th:text="${f.ques}">
+
+                            </h3>
+                            <button class="question-btn">
+                                <span class="up-icon">
+                                    <i class="fas fa-chevron-up"></i>
+                                </span>
+                                <span class="down-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="answer">
+                            <p th:text="${f.ans}"></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

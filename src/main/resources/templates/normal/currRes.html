@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Dashboard - AI Dietician</title>
+</head>
+<body>
+	<section>
+		<div class="my-card">
+			<div class="container-fluid">
+            <h1 th:text="${message}"></h1>
+		</div>
+        </div>
+	</section>
+</body>
+</html>

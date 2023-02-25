@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.smart</groupId>
-	<artifactId>SmartContactManager</artifactId>
+	<artifactId>Aidietician</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SmartContactManager</name>
-	<description>This is Cloud based Smart Contact Manager Project</description>
+	<name>Aidietician</name>
+	<description>This is Cloud based Aidietician Project</description>
 	<properties>
 		<java.version>16</java.version>
 	</properties>
@@ -81,7 +81,11 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>6.1.5.Final</version>
 		</dependency>
+
+	
 	</dependencies>
+
+	
 
 	<build>
 		<plugins>

@@ -1,6 +1,9 @@
 package com.Aidietician.Entities;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,10 +11,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+
 
 @Entity
 @Table(name = "USER")
@@ -34,7 +40,9 @@ public class User {
 	
 	private String role;
 	private boolean enabled;
-	
+
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
+	private List<userReq> detailsList = new ArrayList<>();
 	
 	
 	public User() {
@@ -51,6 +59,12 @@ public class User {
 		this.role = role;
 		this.enabled = enabled;
 	
+	}
+
+	public List<userReq> getList() {
+		return detailsList;
+	}public void setList(List<userReq> detailsList) {
+		this.detailsList = detailsList;
 	}
 
 	public int getId() {

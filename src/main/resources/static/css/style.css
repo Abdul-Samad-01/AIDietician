@@ -1,5 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+   
+    font-family: 'Poppins', sans-serif;
+}
+
+
 body {
 	background: #e2e2e2 !important;
+
+	
 }
 
 .bg-primary {
@@ -19,8 +29,9 @@ body {
 
 .my-card {
 	padding: 20px;
-	background: #eaeaea;
+	background: #ffffff;
 	box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+	border-radius: 10px;
 }
 
 /* login page */
@@ -57,43 +68,31 @@ body {
 	margin-right: 10px;
 }
 
-/*sidebar*/
-.sidebar{
-	width: 18%;
-	background: #ffffff;
-	height: 100%;
-	position: fixed;
-	padding-top: 45px;
-	z-index: 999;
+.mt-5, .my-5 {
+    margin-top: 3.5rem!important;
 }
-.sidebar .crossBtn{
-	position: absolute;
-	top: 0;
-	right: 25px;
-	font-size: 30px;
-	cursor: pointer;
+
+.custom-control-inline {
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    margin-right: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
 }
-.sidebar a{
-	display: block;
-	width: 100%;
-	padding: 10px 25px;
-	text-decoration: none;
-	color: grey;
-	font-size: 18px;
-	font-weight: 600;
-}
-.sidebar a:hover{
-	background: #e2e2e2;
-}
-.sidebar .divider{
-	height: 2px;
-	width: 100%;
-	background: #e2e2e2;
-	margin-top: 5px;
-}
+
 .content{
 	margin-left: 20%;
+	
+	
+
 }
+.selectfield{
+	width: 48%;
+	border-radius: 6mm;
+	box-shadow: #023f94;
+	height: 40px;
+}
+
 @media only screen and (max-width: 600px){
 	.sidebar{
 		display: none;
@@ -105,5 +104,6 @@ body {
 	}
 	.content{
 		margin-left: 0% !important;
+		
 	}
 }

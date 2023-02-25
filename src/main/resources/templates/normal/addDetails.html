@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Dashboard - AI Dietician</title>
+</head>
+
+<body>
+	<section>
+		<div class="card">
+			<div class="mycard">
+				<div class="container-fluid">
+					<form th:action="@{/user/addDetails}" method="post" th:object="${details}">
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputEmail4">Height</label>
+								<input type="number" class="form-control" th:field="*{height}" id="inputEmail4"
+									placeholder="Height" />
+							</div>
+							<div class="form-group col-md-6">
+								<label for="inputPassword4">Weight</label>
+								<input type="number" class="form-control" th:field="*{weight}" id="inputPassword4"
+									placeholder="weight" />
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputAddress">age</label>
+								<input type="number" class="form-control" th:field="*{age}" id="inputAddress"
+									placeholder="age" />
+							</div>
+							<!-- <div class="form-group col-md-6">
+								<label for="inputAddress2">goal</label>
+								<input type="number" class="form-control" th:field="*{goal}" id="inputAddress2"
+									placeholder="goal" />
+							</div> -->
+						</div>
+						<div class="form-row d-flex justify-content-around">
+							
+							<select th:field="*{goal}" class="selectfield"
+							aria-label="Default select example">
+							<option th:value="0" selected>Select your Goal</option>
+							<option th:value="1">Weight Loss</option>
+							<option th:value="2">Maintain Weight</option>
+							<option th:value="3">Gain Weight</option>
+							</select>
+
+
+
+							
+								<select th:field="*{activity}" class="selectfield"
+									aria-label="Default select example">
+									<option th:value="0" selected>Select your activity level</option>
+									<option th:value="1">Low</option>
+									<option th:value="2">Medium</option>
+									<option th:value="3">High</option>
+								</select>
+						</div>
+
+						<div>
+							<div class="custom-control custom-radio custom-control-inline ">
+								<input type="radio" id="Male" name="Male" class="custom-control-input" value="1"
+									th:field="*{gender}">
+								<label class="custom-control-label" for="Male">Male</label>
+							</div>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" id="female" name="female" class="custom-control-input" value="2"
+									th:field="*{gender}">
+								<label class="custom-control-label" for="female">female</label>
+							</div>
+						</div>
+
+
+
+
+
+
+						<button type="submit" class="btn btn-primary my-2 w-100 ">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>
