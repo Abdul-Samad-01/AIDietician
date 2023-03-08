@@ -41,9 +41,10 @@ public class User {
 	private String role;
 	private boolean enabled;
 
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
-	private List<userReq> detailsList = new ArrayList<>();
 	
+	
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
+	private List<userRequest> userdetailsList = new ArrayList<>();
 	
 	public User() {
 		super();
@@ -61,10 +62,12 @@ public class User {
 	
 	}
 
-	public List<userReq> getList() {
-		return detailsList;
-	}public void setList(List<userReq> detailsList) {
-		this.detailsList = detailsList;
+	
+
+	public List<userRequest> getUserdetailsList() {
+		return userdetailsList;
+	}public void setUserdetailsList(List<userRequest> userdetailsList) {
+		this.userdetailsList = userdetailsList;
 	}
 
 	public int getId() {

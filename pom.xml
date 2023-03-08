@@ -68,7 +68,18 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		
+
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20201115</version>
+</dependency>
+
+
+
 
 		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
 		<dependency>
@@ -82,10 +93,9 @@
 			<version>6.1.5.Final</version>
 		</dependency>
 
-	
+
 	</dependencies>
 
-	
 
 	<build>
 		<plugins>

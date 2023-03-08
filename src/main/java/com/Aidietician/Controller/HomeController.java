@@ -51,6 +51,12 @@ public class HomeController {
 		return "login";
 	}
 
+	@RequestMapping("/logind")
+	public String customLogind(Model model) {
+		model.addAttribute("title", "Login - AI Dietician");
+		return "logind";
+	}
+
     @PostMapping("do_register")
 	public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result,
 			@RequestParam(value = "agreement", defaultValue = "false") boolean agreement, Model model,
@@ -65,11 +71,11 @@ public class HomeController {
 				model.addAttribute("user", user);
 				return "signup";
 			}
-			user.setRole("ROLE_USER");
+			
 			user.setEnabled(true);
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
-			System.out.println("Agreement : " + agreement);
-			System.out.println("User : " + user);
+			
+			
 			User res = this.userRepository.save(user);
 			model.addAttribute("user", new User());
 			// session.setAttribute("message", new Messages("User registered Successfully...", "alert-success"));
@@ -81,6 +87,14 @@ public class HomeController {
 		}
 		return "signup";
 	}
+
+
+	@RequestMapping(value="/about", method=RequestMethod.GET)
+	public String about(Model model) {
+		model.addAttribute("temp", "xyz");
+		return "about";
+	}
+	
 
 	
 	

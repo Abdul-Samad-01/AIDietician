@@ -1,5 +1,8 @@
 package com.Aidietician.Entities;
 
+
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,31 +11,31 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="userReq")
-public class userReq {
+@Table(name="userRequest")
+public class userRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int sId;
     private double height;
     private double weight;
-    private int goal;
+    private String goal;
     private int age;
-    private int gender;
-    private int  activity;
+    private String gender;
+    private String  activity;
 
     @ManyToOne
     private User user;
 
     
-    public userReq() {
+    public userRequest() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
    
 
-    public userReq(int sId,double height,double weight, int goal, int age,int gender,int  activity){
+    public userRequest(int sId,double height,double weight, String goal, int age,String gender,String  activity,User user){
         super();
         this.sId =sId;
         this.goal=goal;
@@ -40,6 +43,7 @@ public class userReq {
         this.weight = weight;
         this.gender = gender;
         this.activity = activity;
+        this.user = user;
     }
 
     public User getUser() {
@@ -62,9 +66,9 @@ public class userReq {
         return age;
     }
 
-    public int getGoal() {
+    public String getGoal() {
         return goal;
-    }public void setGoal(int goal) {
+    }public void setGoal(String goal) {
         this.goal = goal;
     }
     
@@ -81,15 +85,15 @@ public class userReq {
         this.weight = weight;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
-    }public void setGender(int gender) {
+    }public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public int getActivity() {
+    public String getActivity() {
         return activity;
-    }public void setActivity(int activity) {
+    }public void setActivity(String activity) {
         this.activity = activity;
     }
 
@@ -99,3 +103,5 @@ public class userReq {
     }
 
 }
+
+

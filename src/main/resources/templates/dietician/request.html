@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+	th:replace="dietician/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Dashboard - AI Dietician</title>
+</head>
+<body>
+	<section>
+		<table class="table table-striped">
+			<thead class="thead-dark">
+			  <tr>
+				<th scope="col">Id</th>
+				<th scope="col">Name</th>
+				<th scope="col">Goal</th>
+				<th scope="col">Description</th>
+				<th scope="col">Response</th>
+			  </tr>
+			</thead>
+			<tbody>
+
+			
+			  <tr th:each="n,iterStat : ${name}">
+				<th scope="row">1</th>
+				<td th:text="${n}"></td>
+				<td th:text="${userdetails[__${iterStat.index}__].goal}"></td>
+				<td th:text="${userIdlist[__${iterStat.index}__].description}"></td>
+				<td><button type="button" class="btn btn-success">Give Diet</button></td>
+			  </tr>
+			  
+			</tbody>
+		  </table>
+	</section>
+</body>
+</html>

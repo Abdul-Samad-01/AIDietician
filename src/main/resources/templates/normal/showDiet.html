@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Dashboard - AI Dietician</title>
+</head>
+<body>
+	<section>
+        <div id ="messageBox">
+            
+        </div>
+		<a class = "btn btn-primary" id = "buttonn" th:href="@{/user/reqdiet}">Request diet from dietician</a>
+
+	</section>
+</body>
+</html>

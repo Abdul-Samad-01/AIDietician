@@ -40,10 +40,10 @@
 							
 							<select th:field="*{goal}" class="selectfield"
 							aria-label="Default select example">
-							<option th:value="0" selected>Select your Goal</option>
-							<option th:value="1">Weight Loss</option>
-							<option th:value="2">Maintain Weight</option>
-							<option th:value="3">Gain Weight</option>
+							<option th:value="'NA'" selected>Select your Goal</option>
+							<option th:value="'Weight Loss'">Weight Loss</option>
+							<option th:value="'Maintain Weight'">Maintain Weight</option>
+							<option th:value="'Gain Weight'">Gain Weight</option>
 							</select>
 
 
@@ -51,21 +51,21 @@
 							
 								<select th:field="*{activity}" class="selectfield"
 									aria-label="Default select example">
-									<option th:value="0" selected>Select your activity level</option>
-									<option th:value="1">Low</option>
-									<option th:value="2">Medium</option>
-									<option th:value="3">High</option>
+									<option th:value="'NA'" selected>Select your activity level</option>
+									<option th:value="'Low'">Low</option>
+									<option th:value="'Medium'">Medium</option>
+									<option th:value="'High'">High</option>
 								</select>
 						</div>
 
 						<div>
 							<div class="custom-control custom-radio custom-control-inline ">
-								<input type="radio" id="Male" name="Male" class="custom-control-input" value="1"
+								<input type="radio" id="Male" name="Male" class="custom-control-input" value="Male"
 									th:field="*{gender}">
 								<label class="custom-control-label" for="Male">Male</label>
 							</div>
 							<div class="custom-control custom-radio custom-control-inline">
-								<input type="radio" id="female" name="female" class="custom-control-input" value="2"
+								<input type="radio" id="female" name="female" class="custom-control-input" value="Female"
 									th:field="*{gender}">
 								<label class="custom-control-label" for="female">female</label>
 							</div>

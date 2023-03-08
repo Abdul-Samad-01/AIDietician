@@ -9,4 +9,9 @@ import com.Aidietician.Entities.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query("select u from User u where u.email = :email")
 	public User getUserByUserName(@Param("email") String email);
+
+	@Query("select u.name from User u where u.id = :id")
+	public String getUserNameByUserId(@Param("id") int id);
+
+	
 }

@@ -1,7 +1,6 @@
 package com.Aidietician.Controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,23 +11,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.Aidietician.Dao.RequestRepository;
 import com.Aidietician.Dao.UserRepository;
-import com.Aidietician.Dao.detailRepository;
 import com.Aidietician.Dao.faqRepository;
+import com.Aidietician.Dao.userDetailRepository;
 import com.Aidietician.Entities.Faq;
 import com.Aidietician.Entities.User;
-import com.Aidietician.Entities.userReq;
+import com.Aidietician.Entities.dieticianReq;
+import com.Aidietician.Entities.userRequest;
 import com.Aidietician.Service.process;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserRepository userRepository;
-
 	@Autowired
-	private detailRepository detailRepository;
+	private UserRepository userRepository;
 
 	@Autowired
 	private process process;
@@ -36,72 +34,96 @@ public class UserController {
 	@Autowired
 	private faqRepository faqRepository;
 
-	
+	@Autowired
+	private RequestRepository requestRepository;
 
-    //add common data
-    @ModelAttribute
+	@Autowired
+	private userDetailRepository userDetailRepository;
+
+	String userName;
+	int userId;
+	// add common data
+	@ModelAttribute
 	public void addCommomdata(Model model, Principal principal) {
-		String userName = principal.getName();
-		System.out.println("USERNAME : " + userName);
+		userName = principal.getName();
 		// get the user using userName(Email)
 		User user = userRepository.getUserByUserName(userName);
-		
-		System.out.println("USER : " + user);
+		userId = user.getId();
 		model.addAttribute("user", user);
 	}
-    
-    // user dashboard
+
+	// user dashboard
 	@RequestMapping("/index")
 	public String dashboard(Model model, Principal principal) {
 		model.addAttribute("title", "User Dashboard - AI Dietician");
 		return "normal/user_dashboard";
 	}
 
-	@RequestMapping(value="/bmi")
+	@RequestMapping(value = "/bmi")
 	public String bmi() {
-		System.out.println("bmiopened");
 		return "normal/bmiauto";
 	}
 
-	@GetMapping(value="/addDetails")
+	@GetMapping(value = "/addDetails")
 	public String Details(Model model) {
-		model.addAttribute("details", new userReq());
-		
+		model.addAttribute("details", new userRequest());
+
 		return "normal/addDetails";
 	}
 
-	@PostMapping(value = "/addDetails")
-    public String greetingSubmit(@ModelAttribute("details") userReq userReq, Model model,Principal p) {
-
-	// adding to list 
-	String name = p.getName();
-	User user = userRepository.getUserByUserName(name);
-	userReq.setUser(user);
-	user.getList().add(userReq);
-
-	detailRepository.save(userReq);
-	process.processData(userReq);
-	System.out.println(userReq.toString());
-	model.addAttribute("message", process.toString());
 	
-    return "normal/currRes";
-  }
+
+	@PostMapping(value = "/addDetails")
+	public String greetingSubmit(@ModelAttribute("details") userRequest userRequest, Model model, Principal p) {
+
+		// adding to list
+		String name = p.getName();
+		User user = userRepository.getUserByUserName(name);
+		userRequest.setUser(user);
+		user.getUserdetailsList().add(userRequest);
+
+		userDetailRepository.save(userRequest);
+		process.processData(userRequest);
+		System.out.println(userRequest.toString());
+		model.addAttribute("message", process.toString());
+
+		return "normal/currRes";
+	}
+
+	@RequestMapping(value = "/showDiet")
+	public String showDiet() {
+
+		
+
+		
+
+		return "normal/showDiet";
+	}
+
+	@RequestMapping(value = "/reqdiet")
+	public String reqDiet(Principal principal) {
 
 
+		if(requestRepository.getReqByUserId(userId)==null){
+		dieticianReq req = new dieticianReq();
+		req.setReq(userId);
+		req.setDescription("");
+		requestRepository.save(req);
+		}
+		
+		
 
-	@RequestMapping(value="/faq")
+		return "redirect:showDiet";
+	}
+	
+
+
+	@RequestMapping(value = "/faq")
 	public String faq(Model model) {
 
-		
 		List<Faq> list = faqRepository.findAll();
-		
+
 		model.addAttribute("faq", list);
-		
-		
-		
-		
-		
-		
 
 		return "normal/faq";
 	}

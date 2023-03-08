@@ -2,7 +2,7 @@ package com.Aidietician.Service;
 
 import org.springframework.stereotype.Service;
 
-import com.Aidietician.Entities.userReq;
+import com.Aidietician.Entities.userRequest;
 
 @Service
 public class process {
@@ -10,9 +10,9 @@ public class process {
     private double bmi;
     private String message;
 
-    public void processData(userReq det){
+    public void processData(userRequest det){
         this.setbmi(det.getWeight()/Math.pow((det.getHeight()/100),2));
-        if(det.getGender()==2){
+        if(det.getGender().equals("Female")){
             this.setCalorie(655.1 + (9.563*det.getWeight()) + (1.850*det.getHeight()) - (4.676*det.getAge()));
         }else{
             this.setCalorie(66.47 + (13.75*det.getWeight()) + (5.003*det.getHeight()) - (6.755*det.getAge()));
