@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+	th:replace="dietician/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Dashboard - AI Dietician</title>
+</head>
+<body>
+	<section>
+
+        
+        <div class="card" style="width: 40rem;margin: auto;height: min-content;">
+            <img class="card-img-top" style="width: 20rem; margin-left: auto;margin-right: auto;" th:src="@{/img/user.jpg}" alt="Card image cap">
+            <div class="card-body">
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Height</th>
+                    <th scope="col">Weight</th>
+                    <th scope="col">Goal</th>
+                    <th scope="col">Activity</th>
+                    
+
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row" th:text="${name}"></th>
+                   
+
+                    <td th:text="${m.gender}">Otto</td>
+                    <td th:text="${m.height}">@mdo</td>
+                    <td th:text="${m.weight}">Mark</td>
+                    <td th:text="${m.goal}">Mark</td>
+                    <td th:text="${m.activity}">Mark</td>
+
+                  </tr>
+                
+                </tbody>
+                </table>
+                <a th:href="@{/dietician/giveDiet}" class="btn btn-success w-100">Give Diet</a>            
+            </div>
+          </div>
+       
+	</section>
+</body>
+</html>

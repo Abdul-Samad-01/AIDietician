@@ -1,13 +1,44 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org"
-	th:replace="dietician/base::layout(~{::section})">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="dietician/base::layout(~{::section})">
+
 <head>
 	<meta charset="UTF-8" />
 	<title>Dashboard - AI Dietician</title>
 </head>
+
 <body>
-	<section>
-		<h1>This is Dashboard page</h1>
+	<section class="dietPlanBgImg">
+		<div class="dietplanform">
+
+
+			<form th:action="@{'/dietician/giveDiet/'+ ${sId}}" th:method="post" th:object="${dieticianDiet}">
+				<div class="mb-3">
+					<label for="Breakfast" style="color: aliceblue;" class="form-label">Breakfast</label>
+					<input type="text" th:field="*{breakfast}" class="form-control" id="Breakfast" >
+				</div>
+
+				<div class="mb-3">
+					<label for="lunch" style="color: aliceblue;" class="form-label">Lunch</label>
+					<input type="text" th:field="*{lunch}" class="form-control" id="lunch" >
+				</div>
+
+				<div class="mb-3">
+					<label for="Dinner" style="color: aliceblue;" class="form-label">Dinner</label>
+					<input type="text" th:field="*{dinner}" class="form-control" id="Dinner" >
+				</div>
+
+				
+				<div class="mb-3">
+					<label for="Snack" style="color: aliceblue;" class="form-label">Snack</label>
+					<input type="text" th:field="*{snack}" class="form-control" id="Snack" >
+				</div>
+				
+				
+				<button type="submit" class="btn btn-primary">Send Diet</button>
+			</form>
+
+		</div>
 	</section>
 </body>
+
 </html>

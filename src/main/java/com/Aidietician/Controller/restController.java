@@ -10,6 +10,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,18 +18,21 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.Aidietician.Entities.Nutrition;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
-    @RequestMapping("/callExternalApi")
+    @RequestMapping("/callApi")
     public class restController {
         
        
 
 
         @GetMapping
-        @ResponseBody
-        public String callExternalApi() {
-            String url = "https://api.api-ninjas.com/v1/nutrition?query= fries and roti";
+        public Nutrition callExternalApi(String food) {
+           
+            String url = "https://api.api-ninjas.com/v1/nutrition?query="+ food;
             HttpHeaders headers = new HttpHeaders();
             headers.add("x-api-key", "YjDytEdiDe6OYcLbQzlC3ROV5LKYeacTpvTeeP6i");
             HttpEntity<Object> entity=new HttpEntity<Object>(headers);
@@ -36,11 +40,9 @@ import com.Aidietician.Entities.Nutrition;
             RestTemplate restTemplate = new RestTemplate();
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
             
-            List<Nutrition> list = new ArrayList<>();
             JSONArray n = new JSONArray(response.getBody());
-            
+            Nutrition nut = new Nutrition();
             for (int index = 0; index < n.length(); index++) {
-                Nutrition nut = new Nutrition();
                 JSONObject j = n.getJSONObject(index);
                 nut.setCalories(j.getInt("calories"));
                 nut.setName(j.getString("name"));
@@ -54,7 +56,6 @@ import com.Aidietician.Entities.Nutrition;
                 nut.setSugar_g(j.getInt("sugar_g"));
                 nut.setFat_saturated_g(j.getInt("fat_saturated_g"));    
                 nut.setSodium_mg(j.getInt("sodium_mg"));
-                list.add(nut);
                 
             }
             
@@ -62,8 +63,11 @@ import com.Aidietician.Entities.Nutrition;
             
 
             
-            return response.getBody();
+            return nut;
         }
+
+        
+        
 
 
        

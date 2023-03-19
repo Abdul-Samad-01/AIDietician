@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Diet - AI Dietician</title>
+</head>
+<body>
+	<section>
+		
+		<h1 th:text="${diet.breakfast}"></h1>
+		<a th:href="@{'/user/dieticianDiet/'+${diet.id}}"   class="btn btn-danger">delete</a>
+
+	</section>
+</body>
+</html>

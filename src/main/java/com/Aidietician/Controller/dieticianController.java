@@ -2,7 +2,10 @@ package com.Aidietician.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.Aidietician.Dao.RequestRepository;
@@ -11,6 +14,8 @@ import com.Aidietician.Dao.userDetailRepository;
 import com.Aidietician.Entities.User;
 import com.Aidietician.Entities.dieticianReq;
 import com.Aidietician.Entities.userRequest;
+import com.Aidietician.Entities.dieticianDiet;
+import com.Aidietician.Dao.dieticianDietRepo;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -35,13 +40,18 @@ public class dieticianController {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private dieticianDietRepo dieticianDietRepo;
+
+	int userId;
+
 	@ModelAttribute
 	public void addCommomdata(Model model, Principal principal) {
 		String userName = principal.getName();
 		System.out.println("USERNAME : " + userName);
 		// get the user using userName(Email)
 		User user = userRepository.getUserByUserName(userName);
-		int userId = user.getId();
+		userId = user.getId();
 		System.out.println("USER : " + user);
 		model.addAttribute("user", user);
 	}
@@ -70,16 +80,50 @@ public class dieticianController {
 			}
 		}
 		
+		
 		model.addAttribute("name", name);
 		model.addAttribute("userdetails", userdetails);
 		model.addAttribute("userIdlist", userIdlist);
+		
 
 		return "dietician/request";
 	}
 
-	@RequestMapping("/diet")
-	public String giveDIet(Model model) {
-		model.addAttribute("title", "User Dashboard - AI Dietician");
+	@RequestMapping("/request/{sId}")
+	public String showModal(@PathVariable("sId") int id,Model model){
+
+		userRequest u =  detailRepository.getById(id);
+		String name = userRepository.getUserNameByUserId(u.getUser().getId());
+		model.addAttribute("m", u);
+		model.addAttribute("name", name);
+		return "dietician/userDetails";
+	}
+
+	@GetMapping("/giveDiet/{sId}")
+	public String giveDIet(Model model,@PathVariable("sId") int id) {
+
+		model.addAttribute("sId", id);
+
+		model.addAttribute("dieticianDiet", new dieticianDiet());
 		return "dietician/diet";
 	}
+
+	@PostMapping("/giveDiet/{sId}")
+	public String giveDietProcessing(@ModelAttribute("dieticianDiet") dieticianDiet dieticianDiet,@PathVariable("sId") int id) {
+
+		
+		dieticianReq u =  requestRepository.getById(id);
+	
+		dieticianDiet.setUserId(u.getReq());
+		dieticianDiet.setDieticianId(userId);
+		dieticianDietRepo.save(dieticianDiet);
+		requestRepository.deleteById(u.getId());
+
+
+		
+
+		return "dietician/request";
+		
+	}
+
 }
