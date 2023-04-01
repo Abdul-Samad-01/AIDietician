@@ -18,14 +18,15 @@ import com.Aidietician.Dao.RequestRepository;
 import com.Aidietician.Dao.UserRepository;
 import com.Aidietician.Dao.dieticianDietRepo;
 import com.Aidietician.Dao.faqRepository;
+import com.Aidietician.Dao.foodRepository;
 import com.Aidietician.Dao.userDetailRepository;
 import com.Aidietician.Entities.Faq;
 import com.Aidietician.Entities.Nutrition;
 import com.Aidietician.Entities.User;
 import com.Aidietician.Entities.dieticianReq;
+import com.Aidietician.Entities.food;
 import com.Aidietician.Entities.userRequest;
 import com.Aidietician.Entities.dieticianDiet;
-
 import com.Aidietician.Service.process;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,6 +53,11 @@ public class UserController {
 
 	@Autowired
 	private dieticianDietRepo dieticianDietRepo;
+
+	@Autowired
+	private foodRepository foodRepository;
+
+	
 
 	String userName;
 	int userId;
@@ -106,7 +112,6 @@ public class UserController {
 	@RequestMapping(value = "/showDiet")
 	public String showDiet() {
 
-		
 
 		
 
@@ -156,6 +161,8 @@ public class UserController {
 		List<Faq> list = faqRepository.findAll();
 
 		model.addAttribute("faq", list);
+		
+
 
 		return "normal/faq";
 	}
@@ -172,7 +179,6 @@ public class UserController {
         public String foodnutrition(@RequestParam String food,Model model) {
 
 			restController r = new restController();
-			System.out.println(food);
             Nutrition nut =r.callExternalApi(food);
 			
 			model.addAttribute("m", 1);
@@ -190,5 +196,7 @@ public class UserController {
             
             return "normal/checkFoodDetails";
         }
+
+		
 	
 }

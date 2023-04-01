@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-@RestController
+    @RestController
     @RequestMapping("/callApi")
     public class restController {
         
@@ -66,7 +66,24 @@ import org.springframework.web.bind.annotation.RequestParam;
             return nut;
         }
 
-        
+        // @GetMapping(value="/")
+        // public String foodData() {
+
+        //     String url = "https://api.nal.usda.gov/fdc/v1/foods/search?query=dhokla&dataType=&pageSize=1&pageNumber=1&sortBy=dataType.keyword&sortOrder=asc&api_key=lZg9EbOjqOlFhvrCkkQrD6GclCSCRmTokFrebdTV";
+
+        //     RestTemplate rest = new RestTemplate();
+
+        //     HttpHeaders headers = new HttpHeaders();
+        //     HttpEntity<Object> entity=new HttpEntity<Object>(headers);
+
+        //     ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, entity, String.class);
+        //     // JSONArray n = new JSONArray(response.getBody());
+        //     JSONObject obj = new JSONObject(response.getBody());
+        //     System.out.println(obj.getJSONArray("foods").getJSONObject(0).getJSONArray("foodNutrients").getJSONObject(0).getInt("value"));
+
+        //     return response.getBody();
+            
+        // }
         
 
 

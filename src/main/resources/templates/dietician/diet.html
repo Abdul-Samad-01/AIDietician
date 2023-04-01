@@ -14,28 +14,35 @@
 			<form th:action="@{'/dietician/giveDiet/'+ ${sId}}" th:method="post" th:object="${dieticianDiet}">
 				<div class="mb-3">
 					<label for="Breakfast" style="color: aliceblue;" class="form-label">Breakfast</label>
-					<input type="text" th:field="*{breakfast}" class="form-control" id="Breakfast" >
+					<input type="text" th:field="*{breakfast}" class="form-control" id="Breakfast">
 				</div>
 
 				<div class="mb-3">
 					<label for="lunch" style="color: aliceblue;" class="form-label">Lunch</label>
-					<input type="text" th:field="*{lunch}" class="form-control" id="lunch" >
+					<input type="text" th:field="*{lunch}" class="form-control" id="lunch">
 				</div>
 
 				<div class="mb-3">
 					<label for="Dinner" style="color: aliceblue;" class="form-label">Dinner</label>
-					<input type="text" th:field="*{dinner}" class="form-control" id="Dinner" >
+					<input type="text" th:field="*{dinner}" class="form-control" id="Dinner">
+				</div>
+
+
+				<div class="mb-3">
+					<label for="Snack" style="color: aliceblue;" class="form-label">Snack</label>
+					<input type="text" th:field="*{snack}" class="form-control" id="Snack">
 				</div>
 
 				
-				<div class="mb-3">
-					<label for="Snack" style="color: aliceblue;" class="form-label">Snack</label>
-					<input type="text" th:field="*{snack}" class="form-control" id="Snack" >
-				</div>
-				
-				
-				<button type="submit" class="btn btn-primary">Send Diet</button>
+				<button type="button" onclick="DietSend()" class="btn btn-primary">Send Diet</button>
+				<button type="submit" id="sub" style="display: none;"></button>
 			</form>
+
+
+
+
+
+
 
 		</div>
 	</section>

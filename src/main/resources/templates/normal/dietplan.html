@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Dashboard - AI Dietician</title>
+    
+
+</head>
+<body>
+	<section>
+        <div class="dietPlanBgImg2">
+
+        <div class="dietcontainer">
+            <div class="meal">
+                <img th:src="@{/img/breakfast.jpg}" alt="..." style="max-width: 100%; max-height: 80%;">
+
+                <h2>Breakfast</h2>
+                
+                <ul>
+                    <li th:text ="${breakfast1}"></li><br>
+                    <li th:text = "${breakfast2}"></li><br>
+                    <li>Orange Juice</li>
+                </ul>
+                <!-- <p>Snack</p>
+                <ul>
+                    <li>Apple</li>
+                    <li>Almonds</li>
+                </ul> -->
+            </div>
+    
+            <div class="meal">
+                <img th:src="@{/img/lunch.jpg}" alt="..." style="max-width: 100%; max-height: 80%;">
+
+                <h2>Lunch</h2>
+                
+                <ul>
+                    <li th:text="${lunch1}"></li><br>
+                    <li th:text="${lunch2}"></li><br>
+                    <li th:text="${salad1}"></li>
+                </ul>
+                <!-- <p>Snack</p>
+                <ul>
+                    <li>Greek Yogurt</li>
+                    <li>Blueberries</li>
+                </ul> -->
+            </div>
+    
+            <div class="meal">
+                <img th:src="@{/img/dinner.jpg}" alt="..." style="max-width: 100%; max-height: 80%;">
+
+                <h2>Dinner</h2>
+                <ul>
+                    <li ><span th:text="${dinner1}"> </span>  <span>serving size</span></li><br>
+                    <li th:text="${dinner2}"></li><br>
+                    <li th:text="${salad2}"></li><br>
+                </ul>
+                
+            </div>
+
+            <div class="meal">
+                <img th:src="@{/img/snack.jpg}" alt="..." style="max-width: 100%; max-height: 80%;">
+
+                <h2>Snack</h2>
+                <ul>
+                    <li th:text="${snack}"></li>
+                    <li></li>
+                </ul>
+                
+            </div>
+        </div>
+        </div>
+    
+    </section>
+</body>
+</html>

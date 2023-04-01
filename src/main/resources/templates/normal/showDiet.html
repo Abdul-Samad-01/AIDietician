@@ -7,12 +7,14 @@
 </head>
 <body>
 	<section>
-        <div id ="messageBox">
-            
-        </div>
-		<a class = "btn btn-primary" id = "buttonn" th:href="@{/user/reqdiet}">Request diet from dietician</a>
-		<a class = "btn btn-success" id = "buttonn" th:href="@{/user/dieticianDiet}">Show Diet from Dietician</a>
+      
+		<button class="btn btn-primary" onclick="sendReq()">Request diet from dietician</button>
+		<a id = "reqsend" th:href="@{/user/reqdiet}" style="display: none;"></a>
+		<a class = "btn btn-success" id = "buttonn"  th:href="@{/user/dieticianDiet}">Show Diet from Dietician</a>
+		<a class = "btn btn-success" id = "buttonn"  th:href="@{/user/dietcal}">Show Diet from Dietician</a>
 
+
+		
 	</section>
 </body>
 </html>
