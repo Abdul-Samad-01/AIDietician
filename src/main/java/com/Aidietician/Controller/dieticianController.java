@@ -71,6 +71,7 @@ public class dieticianController {
 		
 		List<userRequest> userdetails = new ArrayList<>();
 		List<String> name = new ArrayList<>();
+		
 		for(int i =0;i<userIdlist.size();i++){
 			List<userRequest> u = detailRepository.getDetailsByUserId(userIdlist.get(i).getReq());
 			String str = userRepository.getUserNameByUserId(userIdlist.get(i).getReq());

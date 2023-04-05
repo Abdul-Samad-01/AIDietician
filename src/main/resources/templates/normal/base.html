@@ -26,6 +26,10 @@
 	<link rel="stylesheet" href="" th:href="@{/css/sidebar.css}" />
 	<link rel="stylesheet" href="" th:href="@{/css/FAQ.css}" />
 	<link rel="stylesheet" href="" th:href="@{/css/fooddetails.css}" />
+	<link rel="stylesheet" href="" th:href="@{/css/userspecific.css}" />
+
+
+	<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"></script>
 
 
 	
@@ -86,7 +90,7 @@
 					</li>
 
 					<li class="nav-link">
-						<a href="#" th:href="@{/user/index}">
+						<a href="#" th:href="@{/user/profile}">
 							<i class='bx bxs-user-account icon'></i>
 							<span class="text nav-text">Your Profile</span>
 						</a>
@@ -117,7 +121,7 @@
 
 					<li class="nav-link">
 						<a href="#" th:href="@{/user/foodDetails}">
-							<i class='far fa-sun icon'></i>
+							<i class='bx bxs-food-menu icon'></i>
 							<span class="text nav-text">FOOD DETAILS</span>
 						</a>
 					</li>
@@ -166,15 +170,15 @@
 		crossorigin="anonymous"></script>
 
 	<!-- Start of ChatBot (www.chatbot.com) code -->
-<!-- <script type="text/javascript">
+<script type="text/javascript">
     window.__be = window.__be || {};
-    window.__be.id = "640c6958277ac90007a060ba";
+    window.__be.id = "64294063c480070007e50894";
     (function() {
         var be = document.createElement('script'); be.type = 'text/javascript'; be.async = true;
         be.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.chatbot.com/widget/plugin.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(be, s);
     })();
-</script> -->
+</script>
 <!-- End of ChatBot code -->
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

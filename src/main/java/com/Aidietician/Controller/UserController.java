@@ -1,11 +1,13 @@
 package com.Aidietician.Controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.lookup.MapDataSourceLookup;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,6 +63,7 @@ public class UserController {
 
 	String userName;
 	int userId;
+	String name;
 	// add common data
 	@ModelAttribute
 	public void addCommomdata(Model model, Principal principal) {
@@ -68,6 +71,7 @@ public class UserController {
 		// get the user using userName(Email)
 		User user = userRepository.getUserByUserName(userName);
 		userId = user.getId();
+		name = user.getName();
 		model.addAttribute("user", user);
 	}
 
@@ -76,6 +80,29 @@ public class UserController {
 	public String dashboard(Model model, Principal principal) {
 		model.addAttribute("title", "User Dashboard - AI Dietician");
 		return "normal/user_dashboard";
+	}
+
+	@RequestMapping("/profile")
+	public String profile(Model model, Principal principal) {
+		model.addAttribute("title", "profile - AI Dietician");
+
+		List<userRequest> userdetails = new ArrayList<>();
+		List<Integer> bmilist = new ArrayList<>();
+		userdetails = userDetailRepository.getDetailsByUserId(userId);
+		for(int i =0;i<userdetails.size()-1;i++){
+			process.processData(userdetails.get(i));
+			bmilist.add((int)process.getbmi());
+		}
+		model.addAttribute("userdetails",userdetails.get(userdetails.size()-1));
+		model.addAttribute("Name", name);
+		model.addAttribute("bmi", bmilist);
+		for (int index = 0; index < bmilist.size(); index++) {
+			System.out.println(bmilist.get(index));
+		}
+
+
+
+		return "normal/profile";
 	}
 
 	@RequestMapping(value = "/bmi")
@@ -183,10 +210,12 @@ public class UserController {
 			
 			model.addAttribute("m", 1);
 			Map<String,Integer> map = new HashMap<>();
-			map.put("jog",Integer.valueOf((nut.getCalories()/229)*60));
-			map.put("yoga",Integer.valueOf((nut.getCalories()/223)*60));
-			map.put("walk",Integer.valueOf((nut.getCalories()/294)*60));
-			map.put("gym",Integer.valueOf((nut.getCalories()/483)*60));
+			int cal = nut.getCalories();
+			
+			map.put("jog",(int)Math.ceil(cal/((8*65)/60)));
+			map.put("yoga",(int)Math.ceil(cal/((4*65)/60)));
+			map.put("walk",(int)Math.ceil(cal/((5.5*65)/60)));
+			map.put("gym",(int)Math.ceil(cal/((6*65)/60)));
 			model.addAllAttributes(map);
 			
 

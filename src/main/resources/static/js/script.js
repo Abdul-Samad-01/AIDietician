@@ -45,7 +45,23 @@ function DietSend() {
 		}
 	})
 
+
 }
+
+
+
+  function veg() {
+	document.getElementById("veg").checked = true;
+
+  }
+
+  function nonveg() {
+	document.getElementById("nonveg").checked = true;
+  }
+
+
+
+
 
 
 

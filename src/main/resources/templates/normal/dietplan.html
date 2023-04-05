@@ -13,7 +13,7 @@
 
         <div class="dietcontainer">
             <div class="meal">
-                <img th:src="@{/img/breakfast.jpg}" alt="..." style="max-width: 100%; max-height: 80%;">
+                <img th:src="@{/img/breakfast.jpg}" alt="..." style="max-width: 100%; max-height: 60%; border-radius:15px">
 
                 <h2>Breakfast</h2>
                 
@@ -30,7 +30,7 @@
             </div>
     
             <div class="meal">
-                <img th:src="@{/img/lunch.jpg}" alt="..." style="max-width: 100%; max-height: 80%;">
+                <img th:src="@{/img/lunch.jpg}" alt="..." style="max-width: 100%; max-height: 60%; border-radius:15px">
 
                 <h2>Lunch</h2>
                 
@@ -47,7 +47,7 @@
             </div>
     
             <div class="meal">
-                <img th:src="@{/img/dinner.jpg}" alt="..." style="max-width: 100%; max-height: 80%;">
+                <img th:src="@{/img/dinner.jpg}" alt="..." style="max-width: 100%; max-height: 60%; border-radius:15px">
 
                 <h2>Dinner</h2>
                 <ul>
@@ -59,7 +59,7 @@
             </div>
 
             <div class="meal">
-                <img th:src="@{/img/snack.jpg}" alt="..." style="max-width: 100%; max-height: 80%;">
+                <img th:src="@{/img/snack.jpg}" alt="..." style="max-width: 100%; max-height: 60%; border-radius:15px">
 
                 <h2>Snack</h2>
                 <ul>
@@ -68,6 +68,10 @@
                 </ul>
                 
             </div>
+
+            <a class = "btn btn-success" id = "buttonn"  th:href="@{/user/dietcal}" style="width: 80%; border-radius: 10px; ">Change Current Diet</a>
+
+
         </div>
         </div>
     

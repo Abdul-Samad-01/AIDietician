@@ -1,22 +1,85 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org"
-	th:replace="normal/base::layout(~{::section})">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+
 <head>
 	<meta charset="UTF-8" />
 	<title>Dashboard - AI Dietician</title>
+	<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"></script>
+
 </head>
+
 <body>
 	<section>
-      
-		<button class="btn btn-primary" onclick="sendReq()">Request diet from dietician</button>
-		<a id = "reqsend" th:href="@{/user/reqdiet}" style="display: none;"></a>
-		<a class = "btn btn-success" id = "buttonn"  th:href="@{/user/dieticianDiet}">Show Diet from Dietician</a>
-		<a class = "btn btn-success" id = "buttonn"  th:href="@{/user/dietcal}">Calculate Diet</a>
-		<a class = "btn btn-success" id = "buttonn"  th:href="@{/user/dietcal}">Enter new details</a>
 
-
+		<script th:inline="javascript">
+			function SelectedOption() {
+  const selectedOption = document.querySelector('input[name="radio-buttons"]:checked').value;
+  
+  window.location.href = "/user/dietcal/" + encodeURIComponent(selectedOption);
+}
+		</script>
 
 		
+		<div class="dietPlanBgImg2">
+
+			<div class="card-container">
+				<div class="centercard">
+
+					<div class="logolabel">
+
+
+
+
+						<input type="radio" value="vegetables" id="veg" class="foodradio" name="radio-buttons">
+
+						<img th:src="@{/img/veganlogo.png}" onclick="veg()"
+							class=" img-responsive logo mb-3 mt-3 logoimg foodradioimg" />
+
+						<input type="radio" value="meats" id="nonveg" class="foodradio" name="radio-buttons">
+						<img th:src="@{/img/nonveglogo.png}" onclick="nonveg()"
+							class=" img-responsive logo mb-3 mt-3 logoimg foodradioimg" />
+					</div>
+
+					<div
+						style="display: flex;flex-direction: column;justify-content: space-around;align-content: center;">
+
+						<div style="justify-content: space-around; display: flex;">
+							<button class="btn btn-success" id="buttonn" onclick="SelectedOption()">Calculate Diet</button>
+							<a class="btn btn-success" id="buttonn" th:href="@{/user/addDetails}">Enter new details</a>
+						</div>
+						<br>
+						<p
+							style="font-size: 14px;margin-top: 5px;display: flex;align-items: center;justify-content: center; color: green;">
+							----or you can ask diet from dietician----</p>
+						<br>
+						<div
+							style="display: flex;align-content: center;flex-wrap: wrap;flex-direction: column;align-items: center;">
+							<button class="btn btn-primary" onclick="sendReq()">Request diet from dietician</button>
+							<a id="reqsend" th:href="@{/user/reqdiet}" style="display: none;"></a>
+							<br>
+							<a class="btn btn-success" id="buttonn" th:href="@{/user/dieticianDiet}">Show Diet from
+								Dietician</a>
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+
+
+
+
+			</div>
+		</div>
+
+
+
+
+
+
 	</section>
 </body>
+
 </html>

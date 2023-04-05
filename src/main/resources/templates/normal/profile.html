@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Dashboard - AI Dietician</title>
+</head>
+<body>
+	<section>
+		
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"
+        integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <div class="profilecontainer">
+		<div class="profile">
+			<div class="profile-image">
+                <img th:src="@{/img/user.jpg}"  />
+			</div>
+			<div class="profile-info">
+				<h1>User Profile</h1>
+				<div class="details">
+					<p><strong>Name:</strong>  <span th:text="${Name}"></span></p>
+					<p><strong>Age:</strong> <span th:text="${userdetails.age}"></span></p>
+					<p><strong>Gender:</strong> <span th:text="${userdetails.gender}"></span> </p>
+					<p><strong>Height:</strong> <span th:text="${userdetails.height}"></span> cm</p>
+					<p><strong>Weight:</strong> <span th:text="${userdetails.weight}"></span> kg</p>
+					<p><strong>BMI:</strong> <span th:text="${bmi[6]}"></span></p>
+				</div>
+			</div>
+		</div>
+        <canvas th:id="'profilechart'" width="400" height="200" style="margin-top: 20px;" ></canvas>
+        <script th:inline="javascript">
+            var ctx = document.getElementById('profilechart').getContext('2d');
+            var x0 = [[${bmi[0]}]];
+            var x1 = [[${bmi[1]}]];
+            var x2 = [[${bmi[2]}]];
+            var x3 = [[${bmi[3]}]];
+            var x4 = [[${bmi[4]}]];
+            var x5 = [[${bmi[5]}]];
+            var x6 = [[${bmi[6]}]];
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'],
+                    datasets: [{
+                        label: 'BMI Graph',
+                        data: [x0, x1, x2, x3, x4, x5, x6],
+                        borderColor: 'rgba(2, 63, 148,1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+            const config = {
+  type: 'line',
+  data: data,
+};
+        </script>
+        
+	</div>
+
+
+		
+	</section>
+
+
+</body>
+</html>
