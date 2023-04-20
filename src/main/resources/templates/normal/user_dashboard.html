@@ -1,13 +1,73 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org"
-	th:replace="normal/base::layout(~{::section})">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+
 <head>
 	<meta charset="UTF-8" />
 	<title>Dashboard - AI Dietician</title>
 </head>
+
 <body>
 	<section>
-		<h1>This is Dashboard page</h1>
+
+		<div class="dashHeader">
+			<div style="height: 100%;">
+				<h1 >AI Dietician</h1>
+				<p style="font-family: sans-serif;">Elevate your health journey with our web application - empowering you to make informed choices and achieve your nutrition and fitness goals</p>
+			</div>
+			<div >
+				<img th:src="@{/img/dashboard.jpg}" alt="...">
+			</div>
+		</div>
+		<div style="justify-content: center; display: flex;">
+			<h3 style="font-family: sans-serif;">Our Services</h3>
+		</div>
+		<div>
+			<div class="dashrow">
+				<div class="dashcard">
+					<!-- <img src="diet-plan.jpg" alt="Diet plan image"> -->
+					<h2>Diet Plan</h2>
+					<p>Get your diet through our AI Dietician.</p>
+					<button>Get Diet</button>
+				</div>
+
+				<div class="dashcard">
+					<!-- <img src="bmi-calculator.jpg" alt="BMI calculator image"> -->
+					<h2>BMI Calculator</h2>
+					<p>Calculate your body mass index (BMI) and determine your healthy weight range.</p>
+					<button>Calculate BMI</button>
+				</div>
+
+				<div class="dashcard">
+					<!-- <img src="meal-tracker.jpg" alt="Meal tracker image"> -->
+					<h2>Food Details</h2>
+					<p>Get all details of nutrition and macros of any food</p>
+					<button>Food Details</button>
+				</div>
+			</div>
+			<div class="dashrow">
+				<div class="dashcard">
+					<!-- <img src="diet-plan.jpg" alt="Diet plan image"> -->
+					<h2>Diet from Dietician</h2>
+					<p>Get your personalized Diet from a Dietician.</p>
+					<button>Dietician Diet</button>
+				</div>
+
+				<div class="dashcard">
+					<!-- <img src="bmi-calculator.jpg" alt="BMI calculator image"> -->
+					<h2>Progress report</h2>
+					<p>Track your progress from your profile page.</p>
+					<button>Profile</button>
+				</div>
+
+				<div class="dashcard">
+					<!-- <img src="meal-tracker.jpg" alt="Meal tracker image"> -->
+					<h2>ChatBot</h2>
+					<p>You can use our Ai powered chatbot to ask anything related to diet and fitness</p>
+					<button>Log Meal</button>
+				</div>
+			</div>
+		</div>
 	</section>
 </body>
+
 </html>

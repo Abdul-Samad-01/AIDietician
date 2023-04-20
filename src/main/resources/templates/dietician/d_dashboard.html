@@ -7,7 +7,26 @@
 </head>
 <body>
 	<section>
-		<h1>This is Dashboard page</h1>
+		<div class="dieticiancontainer">
+			<div class="header">
+			  <div class="logo">Dietician Dashboard</div>
+			  <div class="profile">
+				<img class="profile-img" src="https://via.placeholder.com/50x50" alt="Profile Image">
+				<div class="profile-name">John Doe</div>
+			  </div>
+			</div>
+			<h1>Dashboard</h1>
+			<div class="stats">
+			  <div class="stat">
+				<div class="stat-header">Total Clients</div>
+				<div class="stat-value" ><span th:text="${totalclient}"></span></div>
+			  </div>
+			  <div class="stat">
+				<div class="stat-header">Pending Requests</div>
+				<div class="stat-value"><span th:text="${pending}"></span></div>
+			  </div>
+			</div>
+	  
 	</section>
 </body>
 </html>

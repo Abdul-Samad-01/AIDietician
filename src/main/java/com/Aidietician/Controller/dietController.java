@@ -3,7 +3,6 @@ package com.Aidietician.Controller;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -11,17 +10,14 @@ import java.util.TreeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.Aidietician.Dao.UserRepository;
 import com.Aidietician.Dao.foodRepository;
 import com.Aidietician.Dao.userDetailRepository;
-import com.Aidietician.Entities.Nutrition;
 import com.Aidietician.Entities.User;
 import com.Aidietician.Entities.food;
 import com.Aidietician.Entities.userRequest;
@@ -63,14 +59,14 @@ public class dietController {
         HashMap<String,Integer> calories = new HashMap<>();
 
 
-        food food = new food();
         process p = new process();
        
 
         List<userRequest> userreq = detailRepository.getDetailsByUserId(userId);
-        p.processData(userreq.get(userreq.size()-2));
+        p.processData(userreq.get(userreq.size()-1));
 
         double bmr = p.getCalorie();
+
 
         int caldev = 2;
         if(mealtype.equals("vegetables")){
@@ -78,7 +74,7 @@ public class dietController {
         }
 
         
-
+        // breaking calories into meals
         int breakfast = (int)Math.round(bmr*0.25);
         int lunch = (int)Math.round(bmr*0.30);
         int dinner = (int)Math.round(bmr*0.25);
@@ -86,14 +82,14 @@ public class dietController {
 
         System.out.println(breakfast+" "+lunch+" "+dinner+" "+snack);
 
-
+        // fetching data of snack breakfast and salads from database
         List<food> f = foodRepository.getFoodbyCatogory("saladss");
         List<food> breakfastlist = foodRepository.getFoodbyCatogory("breakfastt");
         List<food> snackdata = foodRepository.getFoodbyCatogory("snacks");
 
 
 
-
+        // salad for lunch
         int index = (int)(Math.random() * f.size()-1) + 1;
 
         map.put("salad1", f.get(index).getName());
@@ -106,18 +102,16 @@ public class dietController {
         
         
 
-
+        // salad for dinner
         index = (int)(Math.random() * f.size()-1) + 1;
         map.put("salad2", f.get(index).getName());
         dinner-=f.get(index).getCalories()*2;
         totalcalories+=f.get(index).getCalories()*2;
-
         System.out.println("salad2 "+f.get(index).getCalories()*2);
-
         calories.put("dinnersalad", f.get(index).getCalories()*2);
 
 
-
+        // fetching data of lunch and dinner on the basis of calories from database
         List<food> lunchlist = foodRepository.getFoodbyCatogoryandcalorie(mealtype, lunch/caldev);
         List<food> dinnerlist = foodRepository.getFoodbyCatogoryandcalorie(mealtype, dinner/caldev);
 
@@ -125,10 +119,11 @@ public class dietController {
         
 
        
-        
+        // creating food list for lunch
         if(lunchlist.size() > 1){
             index = (int)(Math.random() * lunchlist.size()-1) + 1;
             map.put("lunch1", lunchlist.get(index).getName());
+            map.put("lunch1serve", lunchlist.get(index).getServingdesc());// serving size
             totalcalories+=lunchlist.get(index).getCalories();
 
             System.out.println("lunch1 "+lunchlist.get(index).getCalories());
@@ -138,6 +133,8 @@ public class dietController {
 
             index = (int)(Math.random() * lunchlist.size()-1) + 1;
             map.put("lunch2", lunchlist.get(index).getName());
+            map.put("lunch2serve", lunchlist.get(index).getServingdesc());// serving size
+
             totalcalories+=lunchlist.get(index).getCalories();
 
             System.out.println("lunch2"+lunchlist.get(index).getCalories());
@@ -147,6 +144,8 @@ public class dietController {
             if(mealtype.equals("vegetables")){
                 index = (int)(Math.random() * lunchlist.size()-1) + 1;
                 map.put("lunch3", lunchlist.get(index).getName());
+                map.put("lunch3serve", lunchlist.get(index).getServingdesc());// serving size
+
                 totalcalories+=lunchlist.get(index).getCalories();
 
                 System.out.println("lunch3 "+lunchlist.get(index).getCalories());
@@ -156,9 +155,12 @@ public class dietController {
             }
         }
 
+        // creating food list for dinner
         if(dinnerlist.size() > 1){
             index = (int)(Math.random() * dinnerlist.size()-1) + 1;
             map.put("dinner1", dinnerlist.get(index).getName());
+            map.put("dinner1serve", dinnerlist.get(index).getServingdesc());// serving size
+
             totalcalories+=dinnerlist.get(index).getCalories();
 
             System.out.println("dinner1 "+dinnerlist.get(index).getCalories());
@@ -168,6 +170,8 @@ public class dietController {
 
             index = (int)(Math.random() * dinnerlist.size()-1) + 1;
             map.put("dinner2", dinnerlist.get(index).getName());
+            map.put("dinner2serve", dinnerlist.get(index).getServingdesc());// serving size
+
             totalcalories+=dinnerlist.get(index).getCalories();
 
             System.out.println("dinner2 "+dinnerlist.get(index).getCalories());
@@ -178,6 +182,8 @@ public class dietController {
             if(mealtype.equals("vegetables")){
                 index = (int)(Math.random() * dinnerlist.size()-1) + 1;
                 map.put("dinner3", dinnerlist.get(index).getName());
+                map.put("dinner3serve", dinnerlist.get(index).getServingdesc());// serving size
+
                 totalcalories+=dinnerlist.get(index).getCalories();
 
                 System.out.println("dinner3 "+dinnerlist.get(index).getCalories());
@@ -188,12 +194,10 @@ public class dietController {
             }
         }
 
-
+        // list of breakfast
         int mindiff = Integer.MAX_VALUE;
         index = (int)(Math.random() * f.size()-1) + 1;
-
         int breakfast2cal=0;
-
         map.put("breakfast1", breakfastlist.get(index).getName());
         breakfast -= breakfastlist.get(index).getCalories();
         totalcalories+=breakfastlist.get(index).getCalories();
@@ -213,7 +217,9 @@ public class dietController {
                 
             }
         }
-        for(int i =0;i<snackdata.size();i++){
+
+
+       for(int i =0;i<snackdata.size();i++){
             int currdiff = Math.abs(snackdata.get(i).getCalories()-breakfast);
             if(currdiff<mindiff){
                 mindiff = currdiff;
@@ -229,18 +235,14 @@ public class dietController {
         map.put("breakfast2", breakfast2);
 
 
+
+        // list of snack
         mindiff = Integer.MAX_VALUE;
         String s = "";
         HashMap<Integer,String> temp = new HashMap<>();
         for(int i =0;i<snackdata.size();i++){
             int currdiff = Math.abs(snackdata.get(i).getCalories()-snack);
-            // if(currdiff<mindiff){
-            //     mindiff = currdiff;
-            //     s = snackdata.get(i).getName();
-                
-
-                
-            // }
+            
             temp.put(currdiff,snackdata.get(i).getName());
 
 
@@ -257,7 +259,10 @@ public class dietController {
         s = snacktemp.get(index);
         int bmrint = (int)bmr;
         if(bmrint>totalcalories){
+            
+
         bmrint = bmrint - totalcalories;
+        
         calories.put("snack", bmrint);
         }else{
             calories.put("snack", 0);
@@ -266,10 +271,10 @@ public class dietController {
         System.out.println(totalcalories);
         System.out.println(bmr);
 
-        lunch = calories.get("lunchsalad")+calories.get("lunch1")+calories.get("lunch2");
+        lunch = calories.get("lunchsalad")+calories.get("lunch1")+calories.get("lunch2")+calories.getOrDefault("lunch3", 0);
         map.put("lunchcal",""+lunch );
 
-        dinner = calories.get("dinnersalad")+calories.get("dinner1")+calories.get("dinner2");
+        dinner = calories.get("dinnersalad")+calories.get("dinner1")+calories.get("dinner2")+calories.getOrDefault("dinner3", 0);;
         map.put("dinnercal",""+dinner );
 
         breakfast = calories.get("breakfast1")+calories.get("breakfast2");
@@ -288,6 +293,7 @@ public class dietController {
         }
 
         model.addAllAttributes(map);
+        model.addAttribute("mealtype",selectedOption);
         
 
         

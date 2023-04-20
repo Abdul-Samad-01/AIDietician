@@ -198,6 +198,17 @@ body {
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
+	height: 100vh;
+}
+
+.dietPlanBgImg3{
+
+	background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)),
+		url("../img/plainbg.jpg");
+	
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
 }
 
 .dietplanform{
@@ -266,8 +277,18 @@ p {
 ul {
 	margin: 0;
 	padding: 0;
-	list-style:none;
+	list-style:none;	
+	
 }
+
+.scrollable-list {
+	height: 160px; /* set a fixed height for the div */
+	overflow: auto;
+	
+  }
+  
+
+
 
 li {
 	font-size: 16px;

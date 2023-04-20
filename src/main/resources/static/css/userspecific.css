@@ -23,4 +23,72 @@
     border-color: #007bff; 
     box-shadow: 0 0 0 2px #007bff; 
   } 
+
+
+  .dashHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+   
+  }
+  
+  /* Style the logo image */
+  .dashHeader img {
+    width: 450px;
+    height: 350px;
+    object-fit: contain;
+    margin-left: auto;
+  }
+  
+  /* Style the dashcards */
+  .dashcard {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .dashcard:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Style the dashcard buttons */
+  .dashcard button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .dashcard button:hover {
+    background-color: #3e8e41;
+  }
+      
+      /* Style the dashcard images */
+      .dashcard img {
+          width: 100%;
+          height: auto;
+          margin-bottom: 20px;
+          border-radius: 10px;
+      }
+
+  .dashrow{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    flex-wrap: nowrap;
+  }
   

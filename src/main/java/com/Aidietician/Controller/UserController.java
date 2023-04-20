@@ -2,9 +2,12 @@ package com.Aidietician.Controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.lookup.MapDataSourceLookup;
@@ -86,18 +89,42 @@ public class UserController {
 	public String profile(Model model, Principal principal) {
 		model.addAttribute("title", "profile - AI Dietician");
 
+		Queue<Integer> q = new LinkedList<>();
+      
+		// Add 7 zeros to the queue
+		for (int i = 0; i < 7; i++) {
+		   q.add(0);
+		}
+
 		List<userRequest> userdetails = new ArrayList<>();
+		
 		List<Integer> bmilist = new ArrayList<>();
 		userdetails = userDetailRepository.getDetailsByUserId(userId);
-		for(int i =0;i<userdetails.size()-1;i++){
+		
+		for(int i =userdetails.size()-1;i>=0;i--){
+			if((userdetails.size()-1-i)>=7){
+				break;
+			}
 			process.processData(userdetails.get(i));
-			bmilist.add((int)process.getbmi());
+			q.remove();
+			q.add((int)process.getbmi());
+		
+			
+			
 		}
-		model.addAttribute("userdetails",userdetails.get(userdetails.size()-1));
+		for (int i = 0; i < 7; i++) {
+			bmilist.add(0,q.peek());
+			q.remove();
+		}
+
+		
+		
+		model.addAttribute("userdetails",userdetails.size()>0?userdetails.get(userdetails.size()-1):new userRequest());
 		model.addAttribute("Name", name);
 		model.addAttribute("bmi", bmilist);
 		for (int index = 0; index < bmilist.size(); index++) {
 			System.out.println(bmilist.get(index));
+
 		}
 
 
@@ -130,8 +157,16 @@ public class UserController {
 
 		userDetailRepository.save(userRequest);
 		process.processData(userRequest);
-		System.out.println(userRequest.toString());
-		model.addAttribute("message", process.toString());
+		System.out.println(process.getCalorie());
+		int calories = (int)process.getCalorie();
+		HashMap<String,Integer> map = new HashMap<>();
+		map.put("maintain", calories);
+		map.put("mildLoss", calories-200);
+		map.put("loss", calories-500);
+		map.put("extreeme", calories-1000);	
+
+
+		model.addAllAttributes(map);
 
 		return "normal/currRes";
 	}
@@ -170,13 +205,18 @@ public class UserController {
 		} else {
 			m.addAttribute("diet", new dieticianDiet());
 		}
+
 		
-		return "/normal/dieticianDiet";
+
+		
+		return "/normal/dieticianDietpage";
 	}
 
 	@GetMapping(value = "/dieticianDiet/{id}")
 	public String deleteDiet(@PathVariable("id") int id ){
-		dieticianDietRepo.deleteById(id);;
+		if(id !=0){
+		dieticianDietRepo.deleteById(id);
+		}
 		return "redirect:/user/dieticianDiet";
 	}
 	
@@ -225,6 +265,12 @@ public class UserController {
             
             return "normal/checkFoodDetails";
         }
+
+		@RequestMapping(value="/contact", method=RequestMethod.GET)
+		public String nearbyDietician() {
+			return "normal/nearbydietician";
+		}
+		
 
 		
 	

@@ -60,6 +60,12 @@ public class dieticianController {
 	@RequestMapping("/index")
 	public String dashboard(Model model) {
 		model.addAttribute("title", "User Dashboard - AI Dietician");
+		List<User> userlist = userRepository.findAll();
+		model.addAttribute("totalclient", userlist.size());
+		List<dieticianReq> userIdlist = requestRepository.findAll();
+		model.addAttribute("pending", userIdlist.size());
+		
+		
 		return "dietician/d_dashboard";
 	}
 
@@ -76,8 +82,10 @@ public class dieticianController {
 			List<userRequest> u = detailRepository.getDetailsByUserId(userIdlist.get(i).getReq());
 			String str = userRepository.getUserNameByUserId(userIdlist.get(i).getReq());
 			name.add(str);
-			if(u.size()>=0){
+			if(u.size()>0){
 			userdetails.add(u.get(u.size()-1));
+			}else{
+				userdetails.add(new userRequest());
 			}
 		}
 		
@@ -92,11 +100,19 @@ public class dieticianController {
 
 	@RequestMapping("/request/{sId}")
 	public String showModal(@PathVariable("sId") int id,Model model){
+		if(id!=0){
+			userRequest u =  detailRepository.getById(id);
+			String name = userRepository.getUserNameByUserId(u.getUser().getId());
 
-		userRequest u =  detailRepository.getById(id);
-		String name = userRepository.getUserNameByUserId(u.getUser().getId());
 		model.addAttribute("m", u);
 		model.addAttribute("name", name);
+		model.addAttribute("message", "");
+
+		}else{
+			model.addAttribute("m", new userRequest());
+			model.addAttribute("name", "");
+			model.addAttribute("message", "sorry user details are not available ");
+		}
 		return "dietician/userDetails";
 	}
 

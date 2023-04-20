@@ -1,17 +1,45 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org"
-	th:replace="normal/base::layout(~{::section})">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+
 <head>
 	<meta charset="UTF-8" />
 	<title>Dashboard - AI Dietician</title>
 </head>
+
 <body>
 	<section>
 		<div class="my-card">
 			<div class="container-fluid">
-            <h1 th:text="${message}"></h1>
+
+				<h1>CALORIES CALCULATOR</h1>
+				<div >
+					<h4 style="font-family: sans-serif;">The results show a number of daily calorie estimates that can be used as a guideline for how many
+						calories to consume each day to maintain, lose, or gain weight at a chosen rate.</h4>
+
+
+					<br>
+					<p>To maintain weight</p>
+					<h2><strong th:text="${maintain}"></strong> calories/day</h2>
+					<p style="color:green">-0kg/week</p>
+					<br>
+
+					<p> Mild weight loss</p>
+					<h2><strong th:text="${mildLoss}">1906</strong>Calories/day</h2>
+					<p style="color:green">-0.25kg/week</p>
+					<br>
+					<p>weight loss</p>
+					<h2><strong th:text="${loss}">1694</strong>Calories/day</h2>
+					<p style="color:green">-0.5kg/week</p>
+					<br>
+					<p>Extreme weight loss</p>
+					<h2><strong th:text="${extreeme}">1270</strong>Calories/day</h2>
+					<p style="color:green">-1kg/week</p>
+
+
+				</div>
+			</div>
 		</div>
-        </div>
 	</section>
 </body>
+
 </html>
