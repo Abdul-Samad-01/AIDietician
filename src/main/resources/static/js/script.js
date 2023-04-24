@@ -31,7 +31,7 @@ function sendReq(){
 
 function DietSend() {
 	Swal.fire({
-		title: 'Well Done',
+		title: 'Diet Suggested',
 		text: "Diet has been Send to the user",
 		icon: 'success',
 		
@@ -57,6 +57,16 @@ function DietSend() {
 
   function nonveg() {
 	document.getElementById("nonveg").checked = true;
+  }
+
+  function passkeyfun(param) {
+	if (param=='open') {
+		document.getElementById("passkey").style.display="block";
+		
+	} else {
+		document.getElementById("passkey").style.display="none";
+	}
+	
   }
 
 

@@ -209,7 +209,7 @@ public class UserController {
 		
 
 		
-		return "/normal/dieticianDietpage";
+		return "normal/dieticianDietpage";
 	}
 
 	@GetMapping(value = "/dieticianDiet/{id}")

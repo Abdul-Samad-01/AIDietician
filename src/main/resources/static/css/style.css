@@ -140,7 +140,7 @@ body {
 	font-size: 36px;
 	margin-bottom: 20px;
 	color: #333;
-	text-align: left;
+	text-align: center;
 }
 
 .details {
@@ -178,6 +178,8 @@ body {
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
+	min-height: 100vh;
+
 }
 
 .dietPlanBgImg{
@@ -188,6 +190,7 @@ body {
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
+	min-height: 100vh;
 }
 
 .dietPlanBgImg2{
@@ -198,18 +201,11 @@ body {
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	height: 100vh;
+	min-height: 100vh;
+
 }
 
-.dietPlanBgImg3{
 
-	background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)),
-		url("../img/plainbg.jpg");
-	
-	background-size: cover;
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-}
 
 .dietplanform{
 	margin-top: 30px;
@@ -327,6 +323,13 @@ li {
 }
 
 
+.dashcontainer {
+    max-width: 1200px; /* set the maximum width of the container */
+    margin: 0 auto; /* center the container horizontally */
+    padding: 0 20px; /* add some padding to the container */
+    box-sizing: border-box; /* include padding in the container's width */
+  }
+
   
   
 
@@ -359,6 +362,26 @@ li {
 	
 	.profile-info {
 		text-align: center;
+	}
+
+	.details {
+		background-color: #f5f5f5;
+		padding: 20px;
+		border-radius: 10px;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+		width: 300px;
+	}
+
+	.mrow{
+		
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-wrap: wrap;
+			flex-wrap: wrap;
+			margin-right: -15px;
+			margin-left: -15px;
+			margin-top: 8vh;
+		
 	}
 
 }

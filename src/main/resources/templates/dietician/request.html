@@ -12,7 +12,7 @@
 		<table class="table table-striped">
 			<thead class="thead-dark">
 				<tr style="text-align: center;">
-					<th scope="col">Id</th>
+					<!-- <th scope="col">Id</th> -->
 					<th scope="col">Name</th>
 					<th scope="col">Goal</th>
 					<th scope="col">Description</th>
@@ -23,7 +23,7 @@
 
 
 				<tr th:each="n,iterStat : ${name}" style="text-align: center;">
-					<th scope="row">1</th>
+					<!-- <th scope="row">1</th> -->
 					<td th:text="${n}"></td>
 					<td th:text="${userdetails[__${iterStat.index}__].goal}"></td>
 					<td th:text="${userIdlist[__${iterStat.index}__].description}"></td>

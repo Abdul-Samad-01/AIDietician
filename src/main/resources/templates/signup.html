@@ -8,79 +8,92 @@
 
 <body>
 	<section>
-		<div class="foodbg">
-		<div class="container py-3">
-			<div class="row">
-				<div class="col-md-8 offset-md-2">
-					<div class="my-card">
-						<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert"
-							role="alert">
-							<p class="text-center" th:text="${session.message.content}"></p>
-							<th:block th:text="${#session.removeAttribute('message')}"></th:block>
-						</div>
-						<div class="container text-center">
-							<img width="80px" height="80px" src="" th:src="@{/img/signup.png}" alt="Register_Image" />
-						</div>
-						<h1 class="text-center">Register Here</h1>
-						<form novalidate action="" th:action="@{do_register}" method="post" th:object="${user}">
-							<!-- For name field -->
-							<div class="form-group mb-2">
-								<label for="name_field">Your Name:</label> <input type="text" class="form-control"
-									id="name_field" name="name" aria-describedby="nameHelp"
-									placeholder="Enter Your Name..." th:value="${user.name}"
-									th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}" required>
-								<div class="invalid-feedback" th:each="e : ${#fields.errors('name')}" th:text="${e}">
-								</div>
-							</div>
-							<!-- For email field -->
-							<div class="form-group mb-2">
-								<label for="email_field">Your Email:</label> <input type="email" class="form-control"
-									id="email_field" name="email" aria-describedby="emailHelp"
-									placeholder="Enter Your Email..." th:value="${user.email}"
-									th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}" required>
-								<div class="invalid-feedback" th:each="e : ${#fields.errors('email')}" th:text="${e}">
-								</div>
-
-							</div>
-							<!-- For password field -->
-							<div class="form-group mb-2">
-								<label for="password_field">Your Password:</label> <input type="password"
-									class="form-control" id="password_field" name="password"
-									aria-describedby="passwordHelp" placeholder="Enter Your Password..."
-									th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}" required>
-								<div class="invalid-feedback" th:each="e : ${#fields.errors('password')}"
-									th:text="${e}"></div>
-							</div>
-							<!-- For role field -->
-							<div class="form-group mb-2 ">
-
-								
-									<input type="radio" class="btn-check " th:field="*{role}" value="ROLE_USER" name="options-outlined" id="success-outlined"
-										autocomplete="off" checked>
-									<label class="btn btn-outline-success " for="success-outlined">User</label>
-
-									<input type="radio" class="btn-check" th:field="*{role}" value = "ROLE_dietician" name="options-outlined" id="primary-outlined"
-										autocomplete="off">
-									<label class="btn btn-outline-primary " for="primary-outlined">Dietician</label>
-								
-							</div>
-
-							<!-- For terms and conditions agreement -->
-							<div class="form-group form-check">
-								<input type="checkbox" name="agreement" class="form-check-input" id="check_field" />
-								<label for="check_field">Agree
-									Terms and Conditions.</label>
+		<div class="foodbg" >
+			<div class="container py-3">
+				<div class="row mrow">
+					<div class="col-md-8 offset-md-2">
+						<div class="my-card">
+							<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert"
+								role="alert">
+								<p class="text-center" th:text="${session.message.content}"></p>
+								<th:block th:text="${#session.removeAttribute('message')}"></th:block>
 							</div>
 							<div class="container text-center">
-								<button type="submit" class="btn bg-primary text-white">Submit</button>
-								<button type="reset" class="btn btn-warning">Reset</button>
+								<img width="80px" height="80px" src="" th:src="@{/img/signup.png}"
+									alt="Register_Image" />
 							</div>
-						</form>
+							<h1 class="text-center">Register Here</h1>
+							<form novalidate action="" th:action="@{do_register}" method="post" th:object="${user}">
+								<!-- For name field -->
+								<div class="form-group mb-2">
+									<label for="name_field">Your Name:</label> <input type="text" class="form-control"
+										id="name_field" name="name" aria-describedby="nameHelp"
+										placeholder="Enter Your Name..." th:value="${user.name}"
+										th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}" required>
+									<div class="invalid-feedback" th:each="e : ${#fields.errors('name')}"
+										th:text="${e}">
+									</div>
+								</div>
+								<!-- For email field -->
+								<div class="form-group mb-2">
+									<label for="email_field">Your Email:</label> <input type="email"
+										class="form-control" id="email_field" name="email" aria-describedby="emailHelp"
+										placeholder="Enter Your Email..." th:value="${user.email}"
+										th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}" required>
+									<div class="invalid-feedback" th:each="e : ${#fields.errors('email')}"
+										th:text="${e}">
+									</div>
+
+								</div>
+								<!-- For password field -->
+								<div class="form-group mb-2">
+									<label for="password_field">Your Password:</label> <input type="password"
+										class="form-control" id="password_field" name="password"
+										aria-describedby="passwordHelp" placeholder="Enter Your Password..."
+										th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}" required>
+									<div class="invalid-feedback" th:each="e : ${#fields.errors('password')}"
+										th:text="${e}"></div>
+								</div>
+								<!-- For role field -->
+								<div class="form-group mb-2 ">
+
+
+									<input type="radio" class="btn-check userradio" onclick="passkeyfun('close')"
+										th:field="*{role}" value="ROLE_USER" name="options-outlined"
+										id="success-outlined" autocomplete="off" checked>
+									<label class="btn btn-outline-success " for="success-outlined">User</label>
+
+									<input type="radio" class="btn-check keytrigger" onclick="passkeyfun('open')"
+										th:field="*{role}" value="ROLE_dietician" name="options-outlined"
+										id="primary-outlined" autocomplete="off">
+									<label class="btn btn-outline-primary " for="primary-outlined">Dietician</label>
+
+								</div>
+								<div>
+									<input type="number" style="display:none; border-radius: 6px; " id="passkey"
+									name="passkey" th:value="${passkey}" value="0" placeholder="Enter passkey...">
+									
+								</div>
+
+								<!-- For terms and conditions agreement -->
+								<div class="form-group form-check">
+									<input type="checkbox" name="agreement" class="form-check-input" id="check_field" />
+									<label for="check_field">Agree
+										Terms and Conditions.</label>
+								</div>
+
+								<div class="container text-center">
+									<button type="submit" class="btn bg-primary text-white">Submit</button>
+									<button type="reset" class="btn btn-warning">Reset</button>
+								</div>
+							</form>
+
+							
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</section>
 </body>
 

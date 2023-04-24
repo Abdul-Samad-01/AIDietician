@@ -8,11 +8,13 @@
 
 <body>
     <section>
+        <div class="fooddetails">
         <div class="foodbg">
+            
             <div class="container-fluid">
 
                 <div class="row justify-content-center">
-                    <div class="col-md-8 text-center">
+                    <div class="col-md-8 text-center ">
                         <img th:src="@{/img/logo.png}" class=" img-responsive logo mb-3 mt-3 logoimg" />
                         <form th:action="@{/user/food}" method="post">
                             <div class="input-group input-group-lg mb-5">
@@ -23,10 +25,12 @@
                         </form>
                         <!-- <div class="alert alert-warning"> Oh no! something went wrong.Please try again in sometime.
                         </div> -->
-                        <h1 style="color: aliceblue;"> <span th:text="${food.name}"></span> has a total of <strong
+                        
+                        <h1 class="headingcol" style="color: aliceblue;"> <span th:text="${food.name}"></span> has a total of <strong
                                 th:text="${food.calories}"> </strong> calories
                             <!-- <img src="images/shocked.png" class="img-responsive" /> -->
                         </h1>
+                    
                         <div th:if="${m} == 1" class="if">
                             <div th:if="${food.sodium_mg} > 4000"
                                 class="alert alert-danger d-flex align-items-center mt-3" role="alert">
@@ -177,7 +181,9 @@
 
                     </div>
 
-                </div>
+                
+            </div>
+        </div>
 
     </section>
 

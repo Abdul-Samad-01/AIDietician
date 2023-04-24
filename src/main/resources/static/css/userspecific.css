@@ -47,7 +47,7 @@
     flex-direction: column;
     width: 300px;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     padding: 20px;
     margin: 20px;
     background-color: #fff;
@@ -61,7 +61,7 @@
   }
   
   /* Style the dashcard buttons */
-  .dashcard button {
+  .dashcard .button {
     padding: 10px 20px;
     background-color: #4CAF50;
     color: #fff;
@@ -72,7 +72,7 @@
     transition: background-color 0.2s ease-in-out;
   }
   
-  .dashcard button:hover {
+  .dashcard .button:hover {
     background-color: #3e8e41;
   }
       
@@ -91,4 +91,45 @@
     margin-bottom: 5px;
     flex-wrap: nowrap;
   }
+
+  .dashcontainer {
+    max-width: 1200px; /* set the maximum width of the container */
+    margin: 0 auto; /* center the container horizontally */
+    padding: 0 20px; /* add some padding to the container */
+    box-sizing: border-box; /* include padding in the container's width */
+  }
+
+  .fdcontainer {
+    max-width: 1200px; /* set the maximum width of the container */
+    margin: 0 auto; /* center the container horizontally */
+    /* add some padding to the container */
+    box-sizing: border-box; /* include padding in the container's width */
+  }
+
+  @media screen and (max-width: 768px) {
+    .dashcard {
+      width: 100%; 
+      margin: 10px 0; 
+    }
+    
+    .dashrow {
+      flex-wrap: wrap; 
+      margin-bottom: 20px; 
+    }
+    
+    .dashHeader img {
+      width: 100%; 
+      margin: 0 auto 20px auto; 
+    }
+
+    .dashHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      flex-wrap: wrap;
+     
+    }
+  }
+  
   
