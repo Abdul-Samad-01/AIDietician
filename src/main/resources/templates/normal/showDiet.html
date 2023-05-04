@@ -23,6 +23,11 @@
 		<div class="dietPlanBgImg2" >
 
 			<div class="card-container">
+				<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert"
+								role="alert">
+								<p class="text-center" th:text="${session.message.content}"></p>
+								<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+							</div>
 				<div class="centercard">
 
 					<div class="logolabel">

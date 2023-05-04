@@ -70,6 +70,11 @@ function DietSend() {
   }
 
 
+  function pageLoaded() {
+	document.getElementById("preloader").style.display="none";
+  }
+
+
 
 
 

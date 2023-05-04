@@ -63,10 +63,24 @@ public class dietController {
        
 
         List<userRequest> userreq = detailRepository.getDetailsByUserId(userId);
-        p.processData(userreq.get(userreq.size()-1));
+        userRequest userData = userreq.get(userreq.size()-1);
+        p.processData(userData);
 
         double bmr = p.getCalorie();
 
+        // assigning calories according to the user goal
+        if(userData.getGoal().equals("Weight Loss")){
+            bmr = bmr-300;
+        }else if(userData.getGoal().equals("Gain Weight")){
+            bmr = bmr+300;
+        }
+
+        // manipulating calories on the basis of activity level
+        if(userData.getActivity().equals("Low")){
+            bmr = bmr-50;
+        }else if(userData.getActivity().equals("Medium")){
+            bmr = bmr+50;
+        }
 
         int caldev = 2;
         if(mealtype.equals("vegetables")){

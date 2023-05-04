@@ -36,12 +36,20 @@
 
 
 	<link rel="stylesheet" href="" th:href="@{/css/bmistyle.css}" />
+	<link rel="stylesheet" href="" th:href="@{/css/loader.css}" />
+
 
 
 	<title th:text="${title}">Base HTML</title>
 </head>
 
-<body>
+<body onload="pageLoaded()">
+	<!-- preloader -->
+	<div id="preloader">
+		<div class="loader"></div>
+			
+	</div>
+
 	<!-- navbar starts -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
 		<div class="container-fluid">

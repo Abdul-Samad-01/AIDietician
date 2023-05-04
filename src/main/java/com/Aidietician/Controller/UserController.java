@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.lookup.MapDataSourceLookup;
 import org.springframework.stereotype.Controller;
@@ -33,6 +35,8 @@ import com.Aidietician.Entities.food;
 import com.Aidietician.Entities.userRequest;
 import com.Aidietician.Entities.dieticianDiet;
 import com.Aidietician.Service.process;
+import com.Aidietician.helper.Messages;
+
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -181,15 +185,24 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/reqdiet")
-	public String reqDiet(Principal principal) {
+	public String reqDiet(Principal principal,Model model,HttpSession session) {
 
-
+		try {
+			if(userDetailRepository.getDetailsByUserId(userId).size()==0){
+				throw new Exception("Enter your details from add details module");
+			}
+		
 		if(requestRepository.getReqByUserId(userId)==null){
 		dieticianReq req = new dieticianReq();
 		req.setReq(userId);
 		req.setDescription("");
 		requestRepository.save(req);
 		}
+	} catch (Exception e) {
+		session.setAttribute("message", new Messages("Enter your details from add details module and then send the request", "alert-danger"));
+		return "redirect:showDiet";
+	
+	}
 		
 		
 

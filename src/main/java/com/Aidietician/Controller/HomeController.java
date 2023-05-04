@@ -45,9 +45,7 @@ public class HomeController {
 		model.addAttribute("title", "Signup - AI Dietician");
 		model.addAttribute("user", new User());
 
-		List<Integer> list = new ArrayList<>();
-		list.add(1818);
-		model.addAttribute("list",list);
+	
 		return "signup";
 	}
     
